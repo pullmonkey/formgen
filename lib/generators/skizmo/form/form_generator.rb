@@ -2,7 +2,7 @@ module Skizmo
   module Generators
     class FormGenerator < Rails::Generators::NamedBase  
       source_root File.expand_path('../templates', __FILE__)  
-      argument :class_name, :type => :string, :default => "FooBar"
+      argument :name, :type => :string
       class_option :javascript, :type => :boolean, :default => true, 
         :description => "Include javascript to add and remove associated attributes if there are has_many associations"
       class_option :helpers, :type => :boolean, :default => true, 
@@ -28,11 +28,11 @@ module Skizmo
       private  
 
       def file_name
-        class_name.underscore  
+        name.underscore  
       end  
 
       def cls
-        class_name.classify.constantize
+        name.classify.constantize
       end
 
       def attributes_worth_using_in_the_form(options={})
