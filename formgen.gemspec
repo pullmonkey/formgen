@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "formgen.gemspec",
     "lib/formgen.rb",
     "lib/generators/skizmo/form/USAGE",
     "lib/generators/skizmo/form/form_generator.rb",
