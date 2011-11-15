@@ -2,7 +2,22 @@ Description:
     Generates a form per usual but with fields_for for the has_many and belongs_to associations.
 
 Example:
-    rails generate form [CLASS_NAME] [options]
+    rails generate skizmo:form Foo
+
+    With Foo.rb (model like this):
+      class Foo < ActiveRecord::Base
+        has_many :bars
+        belongs_to :baz
+
+        accepts_nested_attributes_for :bars
+        accepts_nested_attributes_for :baz
+      end
 
     This will create:
-        what/will/it/create
+      public/javascripts/jquery.add_remove_links.js
+      app/helpers/add_remove_links_helper.rb
+      app/views/foos/new.html.erb
+      app/views/foos/edit.html.erb
+      app/views/foos/_form.html.erb
+      app/views/foos/_bar_fields.html.erb
+      app/views/foos/_baz_fields.html.erb

@@ -1,6 +1,45 @@
 = formgen
 
-Description goes here.
+rails g skizmo:form --help
+=== Usage:
+  rails generate skizmo:form NAME [options]
+
+=== Options:
+  [--javascript]  # Indicates when to generate javascript
+                  # Default: true
+  [--helpers]     # Indicates when to generate helpers
+                  # Default: true
+
+=== Runtime options:
+  -p, [--pretend]  # Run but do not make any changes
+  -s, [--skip]     # Skip files that already exist
+  -q, [--quiet]    # Supress status output
+  -f, [--force]    # Overwrite files that already exist
+
+=== Description:
+    Generates a form per usual but with fields_for for the has_many and belongs_to associations.
+
+=== Example:
+    rails generate skizmo:form Foo
+
+    With Foo.rb (model like this):
+      class Foo < ActiveRecord::Base
+        has_many :bars
+        belongs_to :baz
+
+        accepts_nested_attributes_for :bars
+        accepts_nested_attributes_for :baz
+      end
+
+    This will create:
+      public/javascripts/jquery.add_remove_links.js
+      app/helpers/add_remove_links_helper.rb
+      app/views/foos/new.html.erb
+      app/views/foos/edit.html.erb
+      app/views/foos/_form.html.erb
+      app/views/foos/_bar_fields.html.erb
+      app/views/foos/_baz_fields.html.erb
+
 
 == Contributing to formgen
  
@@ -14,6 +53,6 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2011 Charlie. See LICENSE.txt for
+Copyright (c) 2011 Pullmonkey. See LICENSE.txt for
 further details.
 
