@@ -1,3 +1,0 @@
-<h1>Editing <%= class_name.underscore.gsub("_", " ") %></h1>
-<%%= render 'form' %>
-<%%= link_to 'back', :back %>
