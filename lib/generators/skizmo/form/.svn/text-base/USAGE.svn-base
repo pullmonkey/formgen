@@ -1,0 +1,8 @@
+Description:
+    Generates a form per usual but with fields_for for the has_many and belongs_to associations.
+
+Example:
+    rails generate form [CLASS_NAME] [options]
+
+    This will create:
+        what/will/it/create

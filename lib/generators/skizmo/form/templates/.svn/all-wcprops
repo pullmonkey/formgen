@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repos/sign_builder/!svn/ver/119/trunk/lib/generators/form/templates
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/sign_builder/!svn/ver/119/trunk/lib/generators/form/templates/edit.html.erb
+END
+_nested_fields.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/sign_builder/!svn/ver/119/trunk/lib/generators/form/templates/_nested_fields.html.erb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repos/sign_builder/!svn/ver/119/trunk/lib/generators/form/templates/helper.rb
+END
+javascript.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/sign_builder/!svn/ver/119/trunk/lib/generators/form/templates/javascript.js
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/sign_builder/!svn/ver/119/trunk/lib/generators/form/templates/new.html.erb
+END
+_form.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/sign_builder/!svn/ver/122/trunk/lib/generators/form/templates/_form.html.erb
+END

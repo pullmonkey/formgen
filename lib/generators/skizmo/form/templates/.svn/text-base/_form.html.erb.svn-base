@@ -1,0 +1,37 @@
+<%%= form_for @<%= cls.to_s.underscore %> do |f| %>
+  <%% if @<%= cls.to_s.underscore %>.errors.any? %>  
+    <div id="errorExplanation">  
+      <h2><%%= pluralize(@<%= cls.to_s.underscore %>.errors.count, "error") %> prohibited this <%= cls.to_s.underscore.gsub("_"," ") %> from being saved:</h2>  
+      <ul>  
+        <%% @<%= cls.to_s.underscore %>.errors.full_messages.each do |msg| %>  
+          <li><%%= msg %></li>  
+        <%% end %>  
+      </ul>  
+    </div>  
+  <%% end %>  
+<% attributes_worth_using_in_the_form.each do |att| -%>
+  <div class="field">
+    <%%= f.label :<%= att %> %>
+    <%%= f.<%= attr_form_method(cls, att) %> :<%= att %> %>
+  </div>
+<% end -%>
+<% nested_belongs_to_classes.each do |cls_name| -%>
+  <%%= f.fields_for :<%= cls_name %> do |nf| %>
+    <%%= render '<%= cls_name.to_s.singularize.underscore %>_fields', :f => nf %>
+  <%% end %>
+<% end -%>
+<% nested_has_many_classes.each do |cls_name| -%>
+  <%%= f.fields_for :<%= cls_name %> do |nf| %>
+    <%%= render '<%= cls_name.to_s.singularize.underscore %>_fields', :f => nf %>
+  <%% end %>
+<% if options.javascript? -%>
+  <p><%%= link_to_add_fields "Add <%= cls_name.to_s.singularize.gsub("_"," ") %>", f, :<%= cls_name %> %></p>
+<% end -%>
+<% end -%>
+  <%%= f.submit "Save" %>
+<%% end %>
+<% if options.javascript? -%>
+<%%= content_for :head do %>
+  <%%= javascript_include_tag 'jquery.add_remove_links.js' %> 
+<%% end %>
+<% end -%>
