@@ -1,23 +1,26 @@
 = formgen
 
-rails g skizmo:form --help
+  rails g skizmo:form --help
+
 === Usage:
   rails generate skizmo:form NAME [options]
 
 === Options:
-  [--javascript]  # Indicates when to generate javascript
-                  # Default: true
-  [--helpers]     # Indicates when to generate helpers
-                  # Default: true
+  [--helpers]       # Indicates when to generate helpers
+                    # Default: true
+  [--javascript]    # Indicates when to generate javascript
+                    # Default: true
+  [--select-boxes]  # Indicates when to generate select boxes
+                    # Default: true
 
 === Runtime options:
-  -p, [--pretend]  # Run but do not make any changes
+  -f, [--force]    # Overwrite files that already exist
   -s, [--skip]     # Skip files that already exist
   -q, [--quiet]    # Supress status output
-  -f, [--force]    # Overwrite files that already exist
+  -p, [--pretend]  # Run but do not make any changes
 
 === Description:
-    Generates a form per usual but with fields_for for the has_many and belongs_to associations.
+    Generates a form per usual but with fields_for for the has_many and belongs_to associations that are "accepted_nested_attributes".  If the fields are not accepted nested attributes, then they are selectable options, multi-select for has_many and single select for belongs_to.  'has_attached_file' will trigger the file_field input and create a multipart form.
 
 === Example:
     rails generate skizmo:form Foo
@@ -29,16 +32,26 @@ rails g skizmo:form --help
 
         accepts_nested_attributes_for :bars
         accepts_nested_attributes_for :baz
+
+        has_attached_file :image
       end
 
     This will create:
       public/javascripts/jquery.add_remove_links.js
       app/helpers/add_remove_links_helper.rb
+      app/helpers/foo_setup_helper.rb
       app/views/foos/new.html.erb
       app/views/foos/edit.html.erb
       app/views/foos/_form.html.erb
       app/views/foos/_bar_fields.html.erb
       app/views/foos/_baz_fields.html.erb
+
+
+== FAQ
+
+* I'm getting this error:
+  undefined method `setup_something' for #<#<Class:
+Make sure the generated helper is being loaded - restart your rails server.
 
 
 == Contributing to formgen
