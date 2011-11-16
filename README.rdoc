@@ -33,6 +33,9 @@
         has_many :bars
         belongs_to :baz
 
+        has_many :others
+        belongs_to :something
+
         accepts_nested_attributes_for :bars
         accepts_nested_attributes_for :baz
 
@@ -48,6 +51,131 @@
       app/views/foos/_form.html.erb
       app/views/foos/_bar_fields.html.erb
       app/views/foos/_baz_fields.html.erb
+
+== Static Files
+
+* public/javascripts/jquery.add_remove_links.js
+* app/helpers/add_remove_links_helper.rb
+
+
+== Generated Files and Examples
+
+Based on Foo example above.
+
+* app/helpers/foo_setup_helper.rb
+* app/views/foos/new.html.erb
+* app/views/foos/edit.html.erb
+* app/views/foos/_form.html.erb
+* app/views/foos/_bar_fields.html.erb
+* app/views/foos/_baz_fields.html.erb
+
+=== Examples:
+
+==== app/helpers/foo_setup_helper.rb
+  module FooSetupHelper
+    def setup_foo(obj)
+      obj.build_baz  if obj.baz.blank?
+      obj.bars.build if obj.bars.empty?
+      return obj
+    end
+
+    def build_select_list(assoc, options={})
+      name  = options[:name]  || "name"
+      scope = options[:scope] || "all"
+      begin
+        # name and id associations
+        assoc.to_s.classify.constantize.send(scope).map{|a| [a.send(name), a.id]}
+      rescue
+        # use id for text and value
+        assoc.to_s.classify.constantize.send(scope).map(&:id)
+      end
+    end
+  end
+
+==== app/views/foos/new.html.erb
+
+  <h1>New foo</h1>
+  <%= render 'form' %>
+  <%= link_to 'back', :back %>
+
+==== app/views/foos/edit.html.erb
+
+  <h1>Editing foo</h1>
+  <%= render 'form' %>
+  <%= link_to 'back', :back %>
+
+==== app/views/foos/_form.html.erb
+
+  <%= form_for setup_foo(@foo), :html => { :multipart => true } do |f| %>
+    <% if @foo.errors.any? %>
+      <div id="errorExplanation">
+        <h2><%= pluralize(@foo.errors.count, "error") %> prohibited this foo from being saved:</h2>
+        <ul>
+          <% @foo.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="field">
+      <%= f.label :other_ids, "Others" %>
+      <%= f.select :other_ids, build_select_list(:others), {:prompt => "Please select"}, {:multiple => true, :size => 4} %>
+    </div>
+    <div class="field">
+      <%= f.label :something_id, "Something" %>
+      <%= f.select :something_id, build_select_list(:something), {:prompt => "Please select one"} %>
+    </div>
+    <%= f.fields_for :baz do |nf| %>
+      <%= render 'baz_fields', :f => nf %>
+    <% end %>
+    <%= f.fields_for :bars do |nf| %>
+      <%= render 'bar_fields', :f => nf %>
+    <% end %>
+    <%= link_to_add_fields "Add bar", f, :bars %>
+    <%= f.submit "Save" %>
+  <% end %>
+  <%= content_for :head do %>
+    <%= javascript_include_tag 'jquery.add_remove_links.js' %>
+  <% end %>
+
+==== app/views/foos/_bar_fields.html.erb
+
+  <div class="fields">
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :bar %>
+      <%= f.text_field :bar %>
+    </div>
+    <%= link_to_remove_fields "remove", f %>
+  </div>
+ 
+==== app/views/foos/_baz_fields.html.erb
+
+  <div class="fields">
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+  </div>
 
 
 == FAQ
