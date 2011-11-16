@@ -1,4 +1,4 @@
-<% if options.helpers? -%>
+<% if options.helpers? and !nested_classes_with_attributes.empty? -%>
 = form_for setup_<%= cls_underscore %>(@<%= cls.to_s.underscore %>)<%= @have_attachment_string %> do |f|
 <% else -%>
 = form_for @<%= cls.to_s.underscore %><%= @have_attachment_string %> do |f|
