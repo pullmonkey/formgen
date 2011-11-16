@@ -50,7 +50,9 @@
 == FAQ
 
 * I'm getting this error:
+  
   undefined method `setup_something' for #<#<Class:
+
 Make sure the generated helper is being loaded - restart your rails server.
 
 
