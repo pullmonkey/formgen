@@ -181,6 +181,7 @@ Based on Foo example above.
 == FAQ
 
 * I'm getting this error: "undefined method `setup_something' for ...":
+
   Make sure the generated helper is being loaded - restart your rails server.
 
 
