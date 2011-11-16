@@ -1,0 +1,9 @@
+.fields
+<% @attrs.each do |att| -%>
+  .field
+    = f.label :<%= att %>
+    = f.<%= attr_form_method(@kls, att) %> :<%= att %>
+<% end -%>
+<% if @assoc == :has_many and options.javascript? -%>
+  = link_to_remove_fields "remove", f
+<% end -%>
