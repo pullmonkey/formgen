@@ -1,4 +1,8 @@
-<%%= form_for @<%= cls.to_s.underscore %> do |f| %>
+<% if options.helpers? -%>
+<%%= form_for setup_<%= cls_underscore %>(@<%= cls.to_s.underscore %>)<%= @have_attachment_string %> do |f| %>
+<% else -%>
+<%%= form_for @<%= cls.to_s.underscore %><%= @have_attachment_string %> do |f| %>
+<% end -%>
   <%% if @<%= cls.to_s.underscore %>.errors.any? %>  
     <div id="errorExplanation">  
       <h2><%%= pluralize(@<%= cls.to_s.underscore %>.errors.count, "error") %> prohibited this <%= cls.to_s.underscore.gsub("_"," ") %> from being saved:</h2>  
@@ -14,6 +18,20 @@
     <%%= f.label :<%= att %> %>
     <%%= f.<%= attr_form_method(cls, att) %> :<%= att %> %>
   </div>
+<% end -%>
+<% if options.select_boxes? -%>
+<% non_nested_belongs_to_classes.each do |cls_name| -%>
+  <div class="field">
+    <%%= f.label :<%= cls_name %>_id, "<%= cls_name.to_s.underscore.gsub("_", " ").camelize %>" %>
+    <%%= f.select :<%= cls_name %>_id, build_select_list(:<%= cls_name %>), {:prompt => "Please select one"} %>
+  </div>
+<% end -%>
+<% non_nested_has_many_classes.each do |cls_name| -%>
+  <div class="field">
+    <%%= f.label :<%= cls_name.to_s.singularize %>_ids, "<%= cls_name.to_s.underscore.gsub("_", " ").camelize %>" %>
+    <%%= f.select :<%= cls_name.to_s.singularize %>_ids, build_select_list(:<%= cls_name %>), {:prompt => "Please select"}, {:multiple => true, :size => 4} %>
+  </div>
+<% end -%>
 <% end -%>
 <% nested_belongs_to_classes.each do |cls_name| -%>
   <%%= f.fields_for :<%= cls_name %> do |nf| %>

@@ -1,5 +1,5 @@
 Description:
-    Generates a form per usual but with fields_for for the has_many and belongs_to associations.
+    Generates a form per usual but with fields_for for the has_many and belongs_to associations that are "accepted_nested_attributes".  If the fields are not accepted nested attributes, then they are selectable options, multi-select for has_many and single select for belongs_to.  'has_attached_file' will trigger the file_field input and create a multipart form.
 
 Example:
     rails generate skizmo:form Foo
@@ -11,11 +11,14 @@ Example:
 
         accepts_nested_attributes_for :bars
         accepts_nested_attributes_for :baz
+
+        has_attached_file :image
       end
 
     This will create:
       public/javascripts/jquery.add_remove_links.js
       app/helpers/add_remove_links_helper.rb
+      app/helpers/foo_setup_helper.rb
       app/views/foos/new.html.erb
       app/views/foos/edit.html.erb
       app/views/foos/_form.html.erb
