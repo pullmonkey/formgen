@@ -191,6 +191,7 @@ Based on Foo example above.
 == Gotchas
 
 * Only does single level nesting at this point.  For example, if the Bar or Baz class had accepts_nested_attributes_for :thing, it would not generate those partials and form elements.  Yet.  This is the only thing on my TODO list before I'd call it a solid 1.0.0.
+* You need to use yield :head somewhere in your layout to take advantage of the jQuery that is loaded in a content_for :head to supply add and remove jQuery.
 
 
 == Contributing to formgen
