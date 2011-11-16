@@ -5,16 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{formgen}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pullmonkey"]
-  s.date = %q{2011-11-15}
+  s.date = %q{2011-11-16}
   s.description = %q{Ruby on Rails form generator based on has_many and belongs_to associations.  Includes the helpers and javascript for adding and removing fields_for form attributes.}
   s.email = %q{info@skizmo.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README",
     "README.rdoc"
   ]
   s.files = [
@@ -22,7 +21,6 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README",
     "README.rdoc",
     "Rakefile",
     "VERSION",
@@ -36,6 +34,7 @@ Gem::Specification.new do |s|
     "lib/generators/skizmo/form/templates/helper.rb",
     "lib/generators/skizmo/form/templates/javascript.js",
     "lib/generators/skizmo/form/templates/new.html.erb",
+    "lib/generators/skizmo/form/templates/setup_helper.rb",
     "test/helper.rb",
     "test/test_formgen.rb"
   ]
