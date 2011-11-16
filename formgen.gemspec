@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{formgen}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pullmonkey"]
@@ -29,11 +29,15 @@ Gem::Specification.new do |s|
     "lib/generators/skizmo/form/USAGE",
     "lib/generators/skizmo/form/form_generator.rb",
     "lib/generators/skizmo/form/templates/_form.html.erb",
+    "lib/generators/skizmo/form/templates/_form.html.haml",
     "lib/generators/skizmo/form/templates/_nested_fields.html.erb",
+    "lib/generators/skizmo/form/templates/_nested_fields.html.haml",
     "lib/generators/skizmo/form/templates/edit.html.erb",
+    "lib/generators/skizmo/form/templates/edit.html.haml",
     "lib/generators/skizmo/form/templates/helper.rb",
     "lib/generators/skizmo/form/templates/javascript.js",
     "lib/generators/skizmo/form/templates/new.html.erb",
+    "lib/generators/skizmo/form/templates/new.html.haml",
     "lib/generators/skizmo/form/templates/setup_helper.rb",
     "test/helper.rb",
     "test/test_formgen.rb"
