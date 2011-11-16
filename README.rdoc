@@ -20,7 +20,10 @@
   -p, [--pretend]  # Run but do not make any changes
 
 === Description:
-    Generates a form per usual but with fields_for for the has_many and belongs_to associations that are "accepted_nested_attributes".  If the fields are not accepted nested attributes, then they are selectable options, multi-select for has_many and single select for belongs_to.  'has_attached_file' will trigger the file_field input and create a multipart form.
+    Generates a form per usual but with fields_for for the has_many and belongs_to associations that are 
+    "accepted_nested_attributes".  If the fields are not accepted nested attributes, then they are 
+    selectable options, multi-select for has_many and single select for belongs_to.  'has_attached_file' 
+    will trigger the file_field input and create a multipart form.
 
 === Example:
     rails generate skizmo:form Foo
