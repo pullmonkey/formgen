@@ -184,6 +184,10 @@ Based on Foo example above.
 
   Make sure the generated helper is being loaded - restart your rails server.
 
+* I want haml templates instead of erb:
+
+  Done - just include this gem https://github.com/indirect/haml-rails
+
 
 == Contributing to formgen
  
