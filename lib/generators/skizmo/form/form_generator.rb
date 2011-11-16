@@ -30,6 +30,8 @@ module Skizmo
           template "_nested_fields.html.#{engine}", "app/views/#{file_name.pluralize}/_#{@sym.to_s.singularize}_fields.html.#{engine}"
         end
       end  
+
+      # TODO multi-level nesting
         
       private  
 
