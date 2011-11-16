@@ -10,7 +10,7 @@ module Skizmo
       class_option :select_boxes, :type => :boolean, :default => true, 
         :description => "Generates select box selections for belongs_to and has_many associations that are not accepted as nested_attributes"
         
-      def generate_form  
+      def generate_form 
         unless nested_has_many_classes.empty?
           copy_file "javascript.js", "public/javascripts/jquery.add_remove_links.js" if options.javascript?  
           copy_file "helper.rb", "app/helpers/add_remove_links_helper.rb" if options.helpers?  
@@ -18,20 +18,24 @@ module Skizmo
         unless nested_classes_with_attributes.empty?
           template "setup_helper.rb", "app/helpers/#{file_name}_setup_helper.rb" if options.helpers?  
         end
-        template "new.html.erb", "app/views/#{file_name.pluralize}/new.html.erb"  
-        template "edit.html.erb", "app/views/#{file_name.pluralize}/edit.html.erb"  
+        template "new.html.#{engine}", "app/views/#{file_name.pluralize}/new.html.#{engine}"  
+        template "edit.html.#{engine}", "app/views/#{file_name.pluralize}/edit.html.#{engine}"  
         @have_attachment_string = have_attachments? ? ", :html => { :multipart => true }" : ""
-        template "_form.html.erb", "app/views/#{file_name.pluralize}/_form.html.erb"  
+        template "_form.html.#{engine}", "app/views/#{file_name.pluralize}/_form.html.#{engine}"  
         nested_classes_with_attributes.each do |hash_with_kls_and_attrs|
           @kls   = hash_with_kls_and_attrs[:kls]    # class object
           @sym   = hash_with_kls_and_attrs[:sym]    # passed to the fields_for
           @attrs = hash_with_kls_and_attrs[:attrs]  # attrs that are worthy for this association
           @assoc = hash_with_kls_and_attrs[:assoc]  # so we know whether to use the add and remove links or not
-          template "_nested_fields.html.erb", "app/views/#{file_name.pluralize}/_#{@sym.to_s.singularize}_fields.html.erb"
+          template "_nested_fields.html.#{engine}", "app/views/#{file_name.pluralize}/_#{@sym.to_s.singularize}_fields.html.#{engine}"
         end
       end  
         
       private  
+
+      def engine
+        ::Rails.application.config.app_generators.rails[:template_engine].to_s rescue "erb"
+      end
 
       def file_name
         cls_underscore
