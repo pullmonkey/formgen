@@ -188,6 +188,10 @@ Based on Foo example above.
 
   Done - just include this gem https://github.com/indirect/haml-rails
 
+== Gotchas
+
+* Only does single level nesting at this point.  For example, if the Bar or Baz class had accepts_nested_attributes_for :thing, it would not generate those partials and form elements.  Yet.  This is the only thing on my TODO list before I'd call it a solid 1.0.0.
+
 
 == Contributing to formgen
  
