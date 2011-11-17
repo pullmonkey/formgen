@@ -96,7 +96,9 @@ module Skizmo
       end
       
       def have_attachments?
-        (has_many_classes | belongs_to_classes).each do |kls|
+        # check nested and object's own
+        return true if attachments_for(cls.to_s.classify.constantize)
+        (nested_has_many_classes | nested_belongs_to_classes).each do |kls|
           return true if attachments_for(kls.to_s.classify.constantize)
         end
         return false
