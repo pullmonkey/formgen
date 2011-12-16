@@ -88,7 +88,7 @@ module Skizmo
       end
 
       def attachments_for(kls)
-        if atts = kls.try(:attachment_definitions)
+        if kls.respond_to? :attachment_definitions and atts = kls.try(:attachment_definitions)
           return atts.keys
         else
           return nil
