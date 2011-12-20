@@ -15,7 +15,7 @@ module Skizmo
           copy_file "javascript.js", "public/javascripts/jquery.add_remove_links.js" if options.javascript?  
           copy_file "helper.rb", "app/helpers/add_remove_links_helper.rb" if options.helpers?  
         end
-        unless nested_classes_with_attributes.empty?
+        unless nested_classes_with_attributes.empty? and non_nested_has_many_classes.empty? and non_nested_belongs_to_classes.empty?
           template "setup_helper.rb", "app/helpers/#{file_name}_setup_helper.rb" if options.helpers?  
         end
         template "new.html.#{engine}", "app/views/#{file_name.pluralize}/new.html.#{engine}"  
