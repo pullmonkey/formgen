@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{formgen}
-  s.version = "0.3.3"
+  s.version = "0.3.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pullmonkey"]
-  s.date = %q{2011-12-16}
+  s.date = %q{2011-12-20}
   s.description = %q{Ruby on Rails form generator based on has_many and belongs_to associations.  Includes the helpers and javascript for adding and removing fields_for form attributes.}
   s.email = %q{info@skizmo.com}
   s.extra_rdoc_files = [
