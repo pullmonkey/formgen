@@ -9,6 +9,8 @@ module Skizmo
         :description => "Update helpers to add link_to_add and link_to_remove methods if there are has_many associations, as well as a setup method for building objects required for nested attribute associations and for building selectable lists for select boxes"
       class_option :select_boxes, :type => :boolean, :default => true, 
         :description => "Generates select box selections for belongs_to and has_many associations that are not accepted as nested_attributes"
+      class_option :index_view, :type => :boolean, :default => false, 
+        :description => "Generate index view for the model"
         
       def generate_form 
         unless nested_has_many_classes.empty?
@@ -18,6 +20,7 @@ module Skizmo
         unless nested_classes_with_attributes.empty? and non_nested_has_many_classes.empty? and non_nested_belongs_to_classes.empty?
           template "setup_helper.rb", "app/helpers/#{file_name}_setup_helper.rb" if options.helpers?  
         end
+        template "index.html.#{engine}", "app/views/#{file_name.pluralize}/index.html.#{engine}" if options.index_view?
         template "new.html.#{engine}", "app/views/#{file_name.pluralize}/new.html.#{engine}"  
         template "edit.html.#{engine}", "app/views/#{file_name.pluralize}/edit.html.#{engine}"  
         @have_attachment_string = have_attachments? ? ", :html => { :multipart => true }" : ""

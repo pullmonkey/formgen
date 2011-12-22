@@ -1,4 +1,4 @@
-%h1 <%= name.pluralize.underscore.gsub("_", " ") %>
+%h1 <%= name.pluralize.underscore.gsub("_", " ").camelize %>
 
 %table
   %tr
@@ -12,5 +12,5 @@
 <% attributes_worth_using_in_the_form.each do |att| -%>
       %td= <%= cls.to_s.underscore %>.<%= att %>
 <% end -%>
-      %td= link_to "Edit", edit_<%= cls.to_s.underscore %>_path(<%= cls.to_s.underscore %>), {:title => 'Edit <%= name %>'}
-      %td= link_to "Delete", <%= cls.to_s.underscore %>, {:title => 'Remove <%= name %>'}, {:confirm => 'Are you sure?', :method => :delete}
+      %td= link_to "Edit", edit_<%= cls.to_s.underscore %>_path(<%= cls.to_s.underscore %>), {:title => 'Edit <%= name.underscore.gsub("_"," ") %>'}
+      %td= link_to "Delete", <%= cls.to_s.underscore %>, {:title => 'Remove <%= name.underscore.gsub("_"," ") %>'}, {:confirm => 'Are you sure?', :method => :delete}
