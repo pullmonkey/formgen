@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{formgen}
-  s.version = "0.4.0"
+  s.name = "formgen"
+  s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pullmonkey"]
-  s.date = %q{2011-12-22}
-  s.description = %q{Ruby on Rails form generator based on has_many and belongs_to associations.  Includes the helpers and javascript for adding and removing fields_for form attributes.}
-  s.email = %q{info@skizmo.com}
+  s.date = "2012-01-06"
+  s.description = "Ruby on Rails form generator based on has_many and belongs_to associations.  Includes the helpers and javascript for adding and removing fields_for form attributes."
+  s.email = "info@skizmo.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -43,11 +43,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_formgen.rb"
   ]
-  s.homepage = %q{http://github.com/pullmonkey/formgen}
+  s.homepage = "http://github.com/pullmonkey/formgen"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.2}
-  s.summary = %q{Ruby on Rails form generator based on has_many and belongs_to associations}
+  s.rubygems_version = "1.8.10"
+  s.summary = "Ruby on Rails form generator based on has_many and belongs_to associations"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
