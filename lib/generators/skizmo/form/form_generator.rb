@@ -117,11 +117,15 @@ module Skizmo
 
       def has_many_classes
         has_many_through_associations = class_reflections.select{|k,v| v.macro == :has_many and v.options.has_key?(:through)}
+        # "select" behaves differenly for different versions of ruby, so sometimes it works and returns a hash, other times, you get an array
+        has_many_through_associations = has_many_through_associations.to_a if has_many_through_associations.is_a?(Hash)
         through_assocs = has_many_through_associations.map{|x| x.last.options[:through]}
         # we don't care about the associations that primarily exist to assist the has_many :through
         has_many_associations = class_reflections.select{|k,v| v.macro == :has_many and 
                                                               not v.options.has_key?(:through) and 
                                                               not through_assocs.include?(k)}
+        # "select" behaves differenly for different versions of ruby, so sometimes it works and returns a hash, other times, you get an array
+        has_many_associations = has_many_associations.to_a if has_many_associations.is_a?(Hash)
         # these are the keys of the reflections we care about 
         (has_many_through_associations | has_many_associations).map(&:first)
       end
@@ -136,7 +140,9 @@ module Skizmo
       end
       
       def belongs_to_classes
-        class_reflections.select{|k,v| v.macro == :belongs_to}.map(&:first)
+        btcs = class_reflections.select{|k,v| v.macro == :belongs_to}
+        btcs = btcs.to_a if btcs.is_a?(Hash)
+        btcs.map(&:first)
       end
       
       # only get the classes that have "nested attributes"
